@@ -7,8 +7,8 @@ public abstract class Entity
     public Guid Id { get; private init; }
 
     protected Entity()
-    {
-        Id = new Guid();
+    {   
+        Id = Guid.NewGuid();
     }
     
     public List<IDomainEvent> PopDomainEvents()

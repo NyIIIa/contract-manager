@@ -7,11 +7,11 @@ namespace ContractManager.Infrastructure.Common.Persistence;
 
 public class AppDbContext(DbContextOptions options, IPublisher publisher) : DbContext(options)
 {
-    public DbSet<ProductionFacility> ProductionFacilities { get; set; }
+    public DbSet<ProductionFacility> ProductionFacilities { get; set; } = null!;
 
-    public DbSet<Equipment> Equipments { get; set; }
+    public DbSet<Equipment> Equipments { get; set; } = null!;
 
-    public DbSet<EquipmentPlacementContract> EquipmentPlacementContracts { get; set; }
+    public DbSet<EquipmentPlacementContract> EquipmentPlacementContracts { get; set; } = null!;
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

@@ -24,5 +24,11 @@ public class ProductionFacilityConfiguration : BaseEntityTypeConfiguration<Produ
 
         builder.HasIndex(e => e.Code)
             .IsUnique();
+
+        builder.HasData(
+            ProductionFacility.Create("PF001", "Assembly Plant A", 1000.50),
+            ProductionFacility.Create("PF002", "Welding Facility B", 850.75),
+            ProductionFacility.Create("PF003", "Machining Center C", 1200.00)
+        );
     }
 }

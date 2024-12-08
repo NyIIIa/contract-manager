@@ -24,5 +24,11 @@ public class EquipmentConfiguration : BaseEntityTypeConfiguration<Equipment>
         
         builder.HasIndex(e => e.Code)
             .IsUnique();
+
+        builder.HasData(
+            Equipment.Create("EQ001", "Drill Machine", 12.53),
+            Equipment.Create("EQ002", "Lathe Machine", 15.75),
+            Equipment.Create("EQ003", "Welding Unit", 21.51)
+        );
     }
 }
