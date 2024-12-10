@@ -1,10 +1,11 @@
 using ContractManager.Domain.Common;
 using ContractManager.Infrastructure.Common.Persistence;
 using MediatR;
+using ILogger = Serilog.ILogger;
 
 namespace ContractManager.Infrastructure.Common.Middleware
 {
-    public class EventualConsistencyMiddleware(RequestDelegate _next)
+    public class EventualConsistencyMiddleware(RequestDelegate next, ILogger logger)
     {
         public const string DomainEventsKey = "DomainEventsKey";
 
@@ -25,9 +26,9 @@ namespace ContractManager.Infrastructure.Common.Middleware
 
                     await transaction.CommitAsync();
                 }
-                catch (Exception)
-                {
-                    //logging
+                catch (Exception ex)
+                { 
+                    logger.Error(ex.Message);
                 }
                 finally
                 {
@@ -35,7 +36,7 @@ namespace ContractManager.Infrastructure.Common.Middleware
                 }
             });
 
-            await _next(context);
+            await next(context);
         }
     }
 }
