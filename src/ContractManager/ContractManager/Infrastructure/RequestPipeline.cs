@@ -6,6 +6,7 @@ namespace ContractManager.Infrastructure
     {
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
+            app.UseMiddleware<EventualConsistencyMiddleware>();
             app.UseMiddleware<ApiKeyAuthenticationMiddleware>();
             return app;
         }
