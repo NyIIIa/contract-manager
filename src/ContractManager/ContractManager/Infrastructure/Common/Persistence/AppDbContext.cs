@@ -1,5 +1,5 @@
 using ContractManager.Domain.Common;
-using ContractManager.Domain.Contracts;
+using ContractManager.Domain.EquipmentPlacementContracts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,11 +7,11 @@ namespace ContractManager.Infrastructure.Common.Persistence;
 
 public class AppDbContext(DbContextOptions options, IPublisher publisher) : DbContext(options)
 {
-    public DbSet<ProductionFacility> ProductionFacilities { get; set; } = null!;
+    public virtual DbSet<ProductionFacility> ProductionFacilities { get; set; } = null!;
 
-    public DbSet<Equipment> Equipments { get; set; } = null!;
+    public virtual DbSet<Equipment> Equipments { get; set; } = null!;
 
-    public DbSet<EquipmentPlacementContract> EquipmentPlacementContracts { get; set; } = null!;
+    public virtual DbSet<EquipmentPlacementContract> EquipmentPlacementContracts { get; set; } = null!;
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

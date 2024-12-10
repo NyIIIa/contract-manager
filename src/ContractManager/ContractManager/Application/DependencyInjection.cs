@@ -1,3 +1,6 @@
+using ContractManager.Application.Common.Behaviors;
+using FluentValidation;
+
 namespace ContractManager.Application
 {
     public static class DependencyInjection
@@ -7,8 +10,11 @@ namespace ContractManager.Application
             services.AddMediatR(options =>
             {
                 options.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+                
+                options.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
+            services.AddValidatorsFromAssemblyContaining(typeof(DependencyInjection));
             return services;   
         }
     }
