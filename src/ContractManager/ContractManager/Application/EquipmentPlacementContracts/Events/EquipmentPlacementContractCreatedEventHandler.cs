@@ -3,10 +3,11 @@ using ContractManager.Domain.EquipmentPlacementContracts.Events;
 using ContractManager.Infrastructure.Common.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using ILogger = Serilog.ILogger;
 
 namespace ContractManager.Application.EquipmentPlacementContracts.Events
 {
-    public class EquipmentPlacementContractCreatedEventHandler(AppDbContext dbContext)
+    public class EquipmentPlacementContractCreatedEventHandler(AppDbContext dbContext, ILogger logger)
         : INotificationHandler<EquipmentPlacementContractCreatedEvent>
     {
         public async Task Handle(EquipmentPlacementContractCreatedEvent notification, CancellationToken cancellationToken)
@@ -23,11 +24,14 @@ namespace ContractManager.Application.EquipmentPlacementContracts.Events
 
             if (contractInfo is null)
             {
-                Console.WriteLine(EquipmentPlacementContractErrors.IdNotFound.Description);
+                logger.Information(EquipmentPlacementContractErrors.IdNotFound.Description);
                 return;
             }
 
-            Console.WriteLine(contractInfo);
+            logger.Information($"Successfully created contract - " +
+                               $"Production facility: {contractInfo.ProdcutionFacilityName} ||" +
+                               $"Equipment: {contractInfo.EquipmentName} ||" +
+                               $"NumberOfEquipmentUnits:  {contractInfo.NumberOfEquipmentUnits}");
         }
     }
 }
