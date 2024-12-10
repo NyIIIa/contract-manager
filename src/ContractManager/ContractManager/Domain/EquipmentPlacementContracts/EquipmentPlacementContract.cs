@@ -26,7 +26,7 @@ public class EquipmentPlacementContract : Entity
             NumberOfEquipmentUnits = numberOfEquipmentUnits
         };
         
-        contract._domainEvents.Add(new EquipmentPlacementContractCreatedEvent(contract.Id, productionFacilityId, equipmentId));
+        contract._domainEvents.Add(new EquipmentPlacementContractCreatedEvent(contract.Id));
 
         return contract;
     }
