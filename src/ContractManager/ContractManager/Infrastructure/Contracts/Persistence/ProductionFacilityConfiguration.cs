@@ -1,4 +1,4 @@
-using ContractManager.Domain.Contracts;
+using ContractManager.Domain.EquipmentPlacementContracts;
 using ContractManager.Infrastructure.Common.Persistence;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

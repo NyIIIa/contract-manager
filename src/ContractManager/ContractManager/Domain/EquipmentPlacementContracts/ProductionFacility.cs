@@ -1,6 +1,6 @@
 using ContractManager.Domain.Common;
 
-namespace ContractManager.Domain.Contracts;
+namespace ContractManager.Domain.EquipmentPlacementContracts;
 
 public class ProductionFacility : Entity
 {
@@ -22,5 +22,10 @@ public class ProductionFacility : Entity
             Name = name,
             StandardArea = standardArea
         };
+    }
+
+    public bool HasEnoughArea(double equipmentArea, int quantity)
+    {
+        return equipmentArea * quantity <= StandardArea;
     }
 }

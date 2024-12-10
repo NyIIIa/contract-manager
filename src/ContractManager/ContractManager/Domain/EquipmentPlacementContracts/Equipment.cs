@@ -1,6 +1,6 @@
 using ContractManager.Domain.Common;
 
-namespace ContractManager.Domain.Contracts;
+namespace ContractManager.Domain.EquipmentPlacementContracts;
 
 public class Equipment : Entity
 {

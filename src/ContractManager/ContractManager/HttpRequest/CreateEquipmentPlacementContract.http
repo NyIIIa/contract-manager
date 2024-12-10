@@ -1,0 +1,11 @@
+POST http://localhost:5007/api/equipmentPlacementContracts
+accept: */*
+Content-Type: application/json
+
+{
+  "productionFacilityCode": "PF001",
+  "equipmentCode": "EQ001",
+  "equipmentQuantity": 3
+}
+
+
