@@ -1,0 +1,9 @@
+@apiKey = Pass_Api_Key_From_Env_File)
+
+GET http://localhost:5007/api/equipmentPlacementContracts
+accept: */*
+X-Api-Key: {{apiKey}}
+
+
+
+

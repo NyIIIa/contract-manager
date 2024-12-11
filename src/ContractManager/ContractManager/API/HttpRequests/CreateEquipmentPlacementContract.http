@@ -1,0 +1,14 @@
+@apiKey = Pass_Api_Key_From_Env_File)
+
+POST http://localhost:5007/api/equipmentPlacementContracts
+accept: */*
+Content-Type: application/json
+X-Api-Key: {{apiKey}}
+
+{
+  "productionFacilityCode": "PF001",
+  "equipmentCode": "EQ001",
+  "equipmentQuantity": 3
+}
+
+
