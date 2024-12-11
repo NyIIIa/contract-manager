@@ -1,6 +1,7 @@
 using ContractManager.Domain.EquipmentPlacementContracts;
 using ContractManager.Infrastructure.Common.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Moq.EntityFrameworkCore;
@@ -12,12 +13,13 @@ namespace ContractManager.API.Tests.Common
         public static Mock<AppDbContext> Initialize()
         {
             var mockPublisher = new Mock<IPublisher>();
+            var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
             
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase("ContractManager")
                 .Options;
             
-            var dbContext = new Mock<AppDbContext>(dbContextOptions, mockPublisher.Object);
+            var dbContext = new Mock<AppDbContext>(dbContextOptions, mockPublisher.Object, mockHttpContextAccessor.Object);
             
             dbContext.Setup<DbSet<ProductionFacility>>(x => x.ProductionFacilities)
                 .ReturnsDbSet(GetFakeProductionFacilityList());
